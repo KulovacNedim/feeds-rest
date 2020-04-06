@@ -9,7 +9,7 @@ const AuthController = require('../controllers/auth');
 describe('Auth Controller', function () {
     before(function (done) {
         mongoose.connect(
-            'mongodb+srv://root:toor@cluster0-muewd.mongodb.net/test-feeds?retryWrites=true&w=majority'
+            `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0-muewd.mongodb.net/${process.env.MONGO_TEST_DATABASE}?retryWrites=true&w=majority`
         )
             .then(result => {
                 const user = new User({

@@ -1,0 +1,9 @@
+{
+    "env": {
+        "MONGO_USER": "root",
+        "MONGO_PASSWORD": "toor",
+        "MONGO_DEFAULT_DATABASE": "feeds",
+        "MONGO_TEST_DATABASE": "test-feeds",
+        "JWT_SECRET": "someRandomStringSecret"
+    }
+}
