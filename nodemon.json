@@ -1,9 +1,7 @@
 {
     "env": {
-        "MONGO_USER": "root",
-        "MONGO_PASSWORD": "toor",
-        "MONGO_DEFAULT_DATABASE": "feeds",
-        "MONGO_TEST_DATABASE": "test-feeds",
+        "DEFAULT_MONGO_CONNECTION": "mongodb+srv://root:FNHvWmjqDmIP2ajj@cluster0-hhic1.mongodb.net/feeds?retryWrites=true&w=majority",
+        "TEST_MONGO_CONNECTION": "mongodb+srv://root:FNHvWmjqDmIP2ajj@cluster0-hhic1.mongodb.net/test-feeds?retryWrites=true&w=majority",
         "JWT_SECRET": "someRandomStringSecret"
     }
 }
