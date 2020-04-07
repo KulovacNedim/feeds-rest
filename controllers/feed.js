@@ -55,13 +55,13 @@ exports.createPost = async (req, res, next) => {
         await post.save();
         const user = await User.findById(req.userId);
         user.posts.push(post);
-        await user.save();
-        io.getIO().emit('posts', {action: 'create', post: {...post._doc, creator: {_id: req.userId, name: user.name}}});
+        const savedUser = await user.save();
         res.status(201).json({
             message: 'Post created successfully!',
             post: post,
-            creator: { _id: user._id, name: user.name }
+            creator: {_id: user._id, name: user.name}
         });
+        return savedUser;
     } catch (err) {
         if (!err.statusCode) {
             err.statusCode = 500;
@@ -79,7 +79,7 @@ exports.getPost = async (req, res, next) => {
             error.statusCode = 404;
             throw error;
         }
-        res.status(200).json({ message: 'Post fetched.', post: post });
+        res.status(200).json({message: 'Post fetched.', post: post});
     } catch (err) {
         if (!err.statusCode) {
             err.statusCode = 500;
@@ -127,7 +127,7 @@ exports.updatePost = async (req, res, next) => {
         post.content = content;
         const result = await post.save();
         io.getIO().emit({action: 'posts', post: result});
-        res.status(200).json({ message: 'Post updated!', post: result });
+        res.status(200).json({message: 'Post updated!', post: result});
     } catch (err) {
         if (!err.statusCode) {
             err.statusCode = 500;
@@ -160,7 +160,7 @@ exports.deletePost = async (req, res, next) => {
         await user.save();
 
         io.getIO().emit('posts', {action: 'delete', post: postId});
-        res.status(200).json({ message: 'Deleted post.' });
+        res.status(200).json({message: 'Deleted post.'});
     } catch (err) {
         if (!err.statusCode) {
             err.statusCode = 500;

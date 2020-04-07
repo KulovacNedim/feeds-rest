@@ -7,6 +7,8 @@ const multer = require('multer');
 const feedRoutes = require('./routes/feed');
 const authRoutes = require('./routes/auth');
 
+const herokuDbNormalizer = require('./util/heroku-db-normalizer');
+
 const app = express();
 
 const fileStorage = multer.diskStorage({
@@ -56,9 +58,9 @@ app.use((error, req, res, next) => {
 });
 
 mongoose.connect(
-    'mongodb+srv://root:toor@cluster0-muewd.mongodb.net/feeds?retryWrites=true&w=majority'
+    `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0-hhic1.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}?retryWrites=true&w=majority`
 )
-    .then(result => {
+    .then(result => {herokuDbNormalizer();
         const server = app.listen(8080);
         const io = require('./socket').init(server);
         io.on('connection', socket => {
