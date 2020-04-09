@@ -28,7 +28,8 @@ In the project directory, you can run:
 
 ## REST endpoints
 
-#####Authentication endpoints:
+
+#### Authentication endpoints:
 
 1. >method: `PUT`, url: `{base_url}/auth/signup`
 
@@ -46,9 +47,9 @@ In the project directory, you can run:
 
  used to update user status. Expects body with the JSON object with property: status
  
- <br>
- 
-#####CRUD operations on `Post` model/object endpoints:
+<br>
+
+#### CRUD operations on `Post` model/object endpoints:
 
 1. >method: `GET`, url: `{base_url}/feed/posts`
 
